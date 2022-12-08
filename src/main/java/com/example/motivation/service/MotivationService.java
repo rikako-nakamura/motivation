@@ -30,4 +30,8 @@ public class MotivationService {
   public void update(MotivationUpdateRequest motivationUpdateRequest){
     motivationMapper.update(motivationUpdateRequest);
   }
+
+  public void delete(Long id){
+    motivationMapper.delete(id);
+  }
 }

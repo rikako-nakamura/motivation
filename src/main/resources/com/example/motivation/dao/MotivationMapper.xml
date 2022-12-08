@@ -21,4 +21,8 @@
   <update id="update">
     UPDATE motivation SET title = #{title}, time = #{time}, memo = #{memo} WHERE id = #{id}
   </update>
+
+  <delete id="delete">
+    DELETE FROM motivation WHERE id = #{id}
+  </delete>
 </mapper>

@@ -85,4 +85,11 @@ public class MotivationController {
     motivationService.update(motivationUpdateRequest);
     return "redirect:/motivation/index";
   }
+
+  //削除する
+  @GetMapping("/motivation/{id}/delete")
+  public String delete(@PathVariable Long id, Model model){
+    motivationService.delete(id);
+    return "redirect:/motivation/index";
+  }
 }

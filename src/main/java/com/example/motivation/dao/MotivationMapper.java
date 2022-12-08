@@ -18,4 +18,6 @@ public interface MotivationMapper {
   void save(MotivationAddRequest motivationRequest);
 
   void update(MotivationUpdateRequest motivationUpdateRequest);
+
+  void delete(Long id);
 }
