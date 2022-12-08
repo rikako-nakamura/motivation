@@ -7,10 +7,18 @@
   <select id="findAll" resultType="com.example.motivation.entity.Motivation">
     SELECT * FROM motivation
   </select>
+
+  <select id="findById" resultType="com.example.motivation.entity.Motivation">
+    SELECT * FROM motivation WHERE id=#{id}
+  </select>
   <insert id="save">
     INSERT INTO motivation
-        (id, title, time, memo)
+      (title, time, memo)
     VALUES
-        (#{id}, #{title}, #{time}, #{memo})
+      (#{title}, #{time}, #{memo})
   </insert>
+
+  <update id="update">
+    UPDATE motivation SET title = #{title}, time = #{time}, memo = #{memo} WHERE id = #{id}
+  </update>
 </mapper>
