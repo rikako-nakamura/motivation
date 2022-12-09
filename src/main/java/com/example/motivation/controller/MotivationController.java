@@ -1,7 +1,9 @@
 package com.example.motivation.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,17 @@ public class MotivationController {
   @Autowired
   private MotivationService motivationService;
   
+  private Map<String, String> rate;
+  private Map<String, String> initrate(){
+    Map<String, String> radio = new LinkedHashMap<>();
+    radio.put("1","🌟");
+    radio.put("2","🌟🌟");
+    radio.put("3","🌟🌟🌟");
+    radio.put("4","🌟🌟🌟🌟");
+    radio.put("5","🌟🌟🌟🌟🌟");
+    return radio;
+  }
+
   //リスト一覧を表示
   @GetMapping(value = "/motivation/index")
   public String index(Model model) {
@@ -38,6 +51,8 @@ public class MotivationController {
   @GetMapping(value = "/motivation/new")
     public String displayAdd(Model model) {
       model.addAttribute("motivationAddRequest", new MotivationAddRequest());
+      rate = initrate();
+      model.addAttribute("rate", rate);
       return "motivation/new";
     }
 
@@ -53,7 +68,6 @@ public class MotivationController {
       model.addAttribute("validationError", errorList);
       return "motivation/new";
     }
-    // リストの登録
     motivationService.save(motivationRequest);
     return "redirect:/motivation/index";
   }
@@ -66,8 +80,11 @@ public class MotivationController {
     motivationUpdateRequest.setId(motivation.getId());
     motivationUpdateRequest.setTitle(motivation.getTitle());
     motivationUpdateRequest.setTime(motivation.getTime());
+    motivationUpdateRequest.setRate(motivation.getRate());
     motivationUpdateRequest.setMemo(motivation.getMemo());
     model.addAttribute("motivationUpdateRequest", motivationUpdateRequest);
+    rate = initrate();
+    model.addAttribute("rate", rate);
     return "motivation/edit";
   }
 

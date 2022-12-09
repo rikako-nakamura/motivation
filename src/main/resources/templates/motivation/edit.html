@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>編集</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  </head>
+
+</head>
   <body>
     <div class="container">
       <div th:if="${validationError}" th:each="error : ${validationError}">
@@ -28,6 +29,12 @@
               <label>内容：</label>
               <input type="text" th:field="*{memo}" class="form-control" placeholder="カノンを練習した。次はサビのリズムに気をつける">
             </div>
+            <div class="form-group">
+              <label>満足度</label>
+              <div th:each="motivation : ${rate}" class="form-check-inline" >
+                <input type="radio" class="form-check-input" th:text="${motivation.value}" th:value="${motivation.key}" th:field="*{rate}">
+              </div>
+            </div>        
             <br />
           </div>
         <div class="text-center">

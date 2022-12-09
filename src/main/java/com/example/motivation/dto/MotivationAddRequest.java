@@ -16,6 +16,8 @@ public class MotivationAddRequest implements Serializable {
   @Size(min= 1, message = "集中した時間は1以上で入力してください")
   private String time;
 
+  private String rate;
+
   private String memo;
 
 }

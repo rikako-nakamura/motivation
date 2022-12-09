@@ -9,17 +9,27 @@
   <h1>何を集中しましたか？</h1>
   <form th:action="@{/motivation/create}" th:object="${motivationAddRequest}" th:method="post">
     <div class="form-group">
-      <label>タイトル：<span class="text-danger">※</span></label>
+      <label>タイトル：</label>
       <input type="text" th:field="*{title}" class="form-control" placeholder="ピアノ">
     </div>
+
     <div class="form-group">
       <label>集中した時間：</label>
       <input type="number" th:field="*{time}" class="form-control">時間
     </div>
+
+    <div class="form-group">
+      <label>満足度</label>
+      <div th:each="motivation : ${rate}" class="form-check-inline" >
+        <input type="radio" class="form-check-input" th:text="${motivation.value}" th:value="${motivation.key}" th:field="*{rate}">
+      </div>
+    </div>
+
     <div class="form-group">
       <label>内容：</label>
       <input type="text" th:field="*{memo}" class="form-control" placeholder="カノンを練習した。次はサビのリズムに気をつける">
     </div>
+
     <br />
     <div class="text-center">
       <input type="submit" value="登録" class="btn btn-primary">

@@ -16,6 +16,9 @@ public class Motivation implements Serializable{
   //集中した時間
   private String time;
 
+  //満足度
+  private String rate;
+
   //内容
   private String memo;
 }

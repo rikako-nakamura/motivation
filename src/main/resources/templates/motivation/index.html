@@ -17,6 +17,7 @@
             <tr>
               <th>タイトル</th>
               <th>集中した時間</th>
+              <th>満足度</th>
               <th>内容</th>
               <th></th>
             </tr>
@@ -25,6 +26,7 @@
             <tr th:each="motivation : ${motivationlist}" th:object="${motivation}" class="align-middle">
               <td th:text="*{title}"></td>
               <td th:text="*{time}"></td>
+              <td th:text="*{rate}"></td>
               <td th:text="*{memo}"></td>
               <td>
                 <a th:href="@{/motivation/{id}/edit(id=*{id})}" class="btn btn-primary">編集</a>
