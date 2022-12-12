@@ -1,8 +1,10 @@
 package com.example.motivation.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.motivation.dao.MotivationMapper;
@@ -23,6 +25,11 @@ public class MotivationService {
   public Motivation findById(Long id){
     return motivationMapper.findById(id);
   }
+
+  public Motivation findById(String title){
+    return motivationMapper.findById(title);
+  }
+
   public void save(MotivationAddRequest motivationAddRequest) {
     motivationMapper.save(motivationAddRequest);
   }
@@ -33,5 +40,9 @@ public class MotivationService {
 
   public void delete(Long id){
     motivationMapper.delete(id);
+  }
+
+  public List<Motivation> findByrate(Map<String, String> rate, Sort sort) {
+    return null;
   }
 }

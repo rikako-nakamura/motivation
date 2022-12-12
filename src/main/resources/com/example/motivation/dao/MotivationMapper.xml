@@ -13,9 +13,9 @@
   </select>
   <insert id="save">
     INSERT INTO motivation
-      (title, time, rate, memo)
+      (title, time, rate, memo, create_date)
     VALUES
-      (#{title}, #{time}, #{rate}, #{memo})
+      (#{title}, #{time}, #{rate}, #{memo}, CURRENT_TIMESTAMP)
   </insert>
 
   <update id="update">

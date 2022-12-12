@@ -1,6 +1,7 @@
 package com.example.motivation.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -11,14 +12,17 @@ public class Motivation implements Serializable{
   private Long id;
 
   //集中したこと
-  private String title;
+  public String title;
 
   //集中した時間
   private String time;
 
   //満足度
-  private String rate;
+  public String rate;
 
   //内容
   private String memo;
+
+  //作成日時
+  private Date createDate;
 }

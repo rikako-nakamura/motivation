@@ -44,6 +44,7 @@ public class MotivationController {
   public String index(Model model) {
     List<Motivation> motivationList = motivationService.findAll();
     model.addAttribute("motivationlist", motivationList);
+
     return "motivation/index";
   }
 

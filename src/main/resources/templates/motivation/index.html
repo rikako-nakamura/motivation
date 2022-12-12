@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <title>Motivation</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
   <body>
     <div class="container">
       <h1>集中管理一覧</h1>
       <div class="float-end">
-        <a th:href="@{/motivation/new}" class="btn btn-primary">登録はこちら</a>
+        <a th:href="@{/motivation/new}" class="btn btn-outline-info">登録はこちら</a>
       </div>
       <div th:if="${motivationlist}">
         <table class="table table-striped">
@@ -29,13 +30,86 @@
               <td th:text="*{rate}"></td>
               <td th:text="*{memo}"></td>
               <td>
-                <a th:href="@{/motivation/{id}/edit(id=*{id})}" class="btn btn-primary">編集</a>
-                <a th:href="@{/motivation/{id}/delete(id=*{id})}" class="btn btn-secondary">削除</a>
+                <a th:href="@{/motivation/{id}/edit(id=*{id})}" class="btn btn-success">編集</a>
+                <a th:href="@{/motivation/{id}/delete(id=*{id})}" class="btn btn-outline-secondary">削除</a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <h2 id="graph">満足度グラフ</h2>
+      <canvas id="LineChart"></canvas>
+      <script type="text/javascript" th:inline="javascript" >
+        const motivationlist = /*[[${motivationlist}]]*/"motivationlist";
+        const rate = motivationlist.map(x=>x.rate);
+
+        let titleArray = [];
+        const title =motivationlist.map(x=>x.title);
+
+        for(var i = 0; i < title.length; i++){
+          titleArray.push(title[i]);
+        }
+
+        let rateArray = [];
+        for(var i = 0; i < rate.length; i++){
+          rateArray.push(rate[i]);
+        }
+        /*<![CDATA[*/
+        var ctx = document.getElementById("LineChart").getContext('2d');
+        var LineChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: titleArray,
+              datasets: [
+                  {
+                    label: "満足度",
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(255, 205, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(242, 87, 87, 0.9)',
+                      'rgba(153,242,87,0.9)',
+                      'rgba(87, 138, 242, 0.9)',
+                      'rgba(242,231,87,0.9)'
+                    ],
+                    borderColor: [
+                      'rgb(255, 99, 132)',
+                      'rgb(255, 159, 64)',
+                      'rgb(255, 205, 86)',
+                      'rgb(75, 192, 192)',
+                      'rgb(54, 162, 235)',
+                      'rgb(153, 102, 255)',
+                      'rgba(242, 87, 87, 0.9)',
+                      'rgba(87, 138, 242, 0.9)',
+                      'rgba(242,231,87,0.9)'
+                    ],
+                    borderWidth: 1,
+                    lineTension: 0,
+                    fill: false,
+                    data: rateArray,
+                  },
+              ]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      min: 0,
+                      stepSize: 1
+                    }
+                  }
+                ]
+              }
+            },
+        });
+        /*]]>*/
+      </script>
+    
     </div>
   </body>
 </html>

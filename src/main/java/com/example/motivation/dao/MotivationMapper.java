@@ -15,6 +15,8 @@ public interface MotivationMapper {
 
   Motivation findById(Long id);
 
+  Motivation findById(String title);
+
   void save(MotivationAddRequest motivationRequest);
 
   void update(MotivationUpdateRequest motivationUpdateRequest);
