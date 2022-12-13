@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +43,7 @@ public class MotivationController {
   //リスト一覧を表示
   @GetMapping(value = "/motivation/index")
   public String index(Model model) {
-    List<Motivation> motivationList = motivationService.findAll();
+    List<Motivation> motivationList = motivationService.findAll(Sort.by(Sort.Direction.DESC, "rate"));
     model.addAttribute("motivationlist", motivationList);
 
     return "motivation/index";

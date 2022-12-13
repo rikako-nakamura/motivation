@@ -5,7 +5,7 @@
 <mapper namespace="com.example.motivation.dao.MotivationMapper">
 
   <select id="findAll" resultType="com.example.motivation.entity.Motivation">
-    SELECT * FROM motivation
+    SELECT * FROM motivation order by rate desc
   </select>
 
   <select id="findById" resultType="com.example.motivation.entity.Motivation">
