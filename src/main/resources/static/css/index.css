@@ -1,0 +1,30 @@
+.container{
+  padding-top: 20px;
+}
+
+.float-end{
+  padding-bottom: 10px;
+}
+
+.graph{
+  color: rgb(7, 187, 4);
+  position: absolute;
+  top: 100%;
+  font-size: 25px;
+  padding-left: 50px;
+
+}
+
+.container img{
+  width:20%;
+  height:auto;
+
+}
+
+.h1{
+  position: absolute;
+  top:15%;
+  padding-left: 50px;
+  font-size:25px;
+  color: rgb(7, 187, 4);
+}
