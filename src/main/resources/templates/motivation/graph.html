@@ -11,157 +11,118 @@
     <div class="container">
       <img th:src="@{/images/frame.jpg}">
       <h1 id="graph" class="graph">満足度グラフ</h1>
-      <canvas id="LineChart"></canvas>
-      <script type="text/javascript" th:inline="javascript" >
-        //motivationlistの全データを呼び出す
-        const motivationlist = /*[[${motivationlist}]]*/"motivationlist";
+      <div class="float-end">
+        <a th:href="@{/motivation/new}" class="btn btn-outline-success">登録はこちら</a>
+        <a th:href="@{/motivation/index}" class="btn btn-outline-info">リスト一覧</a>
+      </div>
+      
+    </div>
 
-        //titleの配列を準備
-        let titleArray = [];
-        //titleのデータを準備
-        const title =motivationlist.map(x=>x.title);
+    <div class="container" style="width:100%">
+      <canvas id="canvas"></canvas>
+    </div>
 
-        for(var i = 0; i < title.length; i++){
-          titleArray.push(title[i]);
-        }
+    <script type="text/javascript" th:inline="javascript" >
+      const motivationlist = /*[[${motivationlist}]]*/"motivationlist";
 
-        //rateの配列を準備
-        let rateArray = [];
-        //rateのデータを呼び出し
-        const rate = motivationlist.map(x=>x.rate);
-        for(var i = 0; i < rate.length; i++){
-          rateArray.push(rate[i]);
-        }
-        var ctx = document.getElementById("LineChart").getContext('2d');
-        var LineChart = new Chart(ctx, {
+      //titleの配列を準備
+      let titleArray = [];
+      //titleのデータを準備
+      const title =motivationlist.map(x=>x.title);
+      for(var i = 0; i < title.length; i++){
+        titleArray.push(title[i]);
+      }
+
+      //rateの配列を準備
+      let rateArray = [];
+      //rateのデータを呼び出し
+      const rate = motivationlist.map(x=>x.rate);
+      for(var i = 0; i < rate.length; i++){
+        rateArray.push(rate[i]);
+      }
+
+      let timeArray = [];
+      //timeのデータを呼び出し
+      const time = motivationlist.map(x=>x.time);
+      for(var i = 0; i < time.length; i++){
+        timeArray.push(time[i]);
+      }
+
+      window.onload = function() {
+        ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
             type: 'bar',
-            data: {
-              labels: titleArray,
-              datasets: [
-                {
-                  label: "満足度",
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(242, 87, 87, 0.9)',
-                    'rgba(153,242,87,0.9)',
-                    'rgba(87, 138, 242, 0.9)',
-                    'rgba(242,231,87,0.9)'
-                  ],
-                  borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgba(242, 87, 87, 0.9)',
-                    'rgba(87, 138, 242, 0.9)',
-                    'rgba(242,231,87,0.9)'
-                  ],
-                  borderWidth: 1,
+            data: barChartData,
+            options: complexChartOption
+        });
+      };
+
+
+    var barChartData = {
+      labels: titleArray,
+      datasets: [
+      {
+        type: 'line',
+        label: '集中時間',
+        data: timeArray,
+        borderColor: 'rgba(0,176,40,1)',
+        fill: false,
+        yAxisID: "y-axis-1",
+      },
+      {
+        type: 'bar',
+        label: '満足度',
+        data: rateArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+        yAxisID: "y-axis-2",
+        borderWidth: 1,
                   lineTension: 0,
                   fill: false,
-                  data: rateArray,
-                },
-              ]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      min: 0,
-                      stepSize: 1
-                    }
-                  }
-                ]
-              }
-            },
-        });
-      </script>
-
-      <img th:src="@{/images/frame.jpg}">
-      <h1 id="graph2" class="graph2">集中した時間</h1>
-      <canvas id="exChart"></canvas>
-      <script type="text/javascript" th:inline="javascript" >
-
-        //timeの配列を準備
-        let timeArray = [];
-        //timeのデータを準備
-        const time =motivationlist.map(x=>x.time);
-
-        for(var i = 0; i < time.length; i++){
-          timeArray.push(time[i]);
-        }
-
-        //createDateの配列を準備
-        let createDateArray = [];
-        //createDateのデータを呼び出し
-        const createDate = motivationlist.map(x=>x.createDate);
-        for(var i = 0; i < createDate.length; i++){
-          createDateArray.push(createDate[i]);
-        }
-
-        var ctx = document.getElementById("exChart");
-        var exChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: createDateArray,
-              datasets: [
-                {
-                  label: "集中時間",
-                  backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(242, 87, 87, 0.9)',
-                    'rgba(153,242,87,0.9)',
-                    'rgba(87, 138, 242, 0.9)',
-                    'rgba(242,231,87,0.9)'
-                  ],
-                  borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgba(242, 87, 87, 0.9)',
-                    'rgba(87, 138, 242, 0.9)',
-                    'rgba(242,231,87,0.9)'
-                  ],
-                  data: timeArray,
-                  lineTension: 0.3,
-                  fill: true,
-                  borderWidth: 3
-                },
-              ]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                yAxes: [
-                  {
-                    ticks: {
-                      min: 0,
-                      stepSize: 1
-                    }
-                  }
-                ]
-              }
-            },
-        });
-
-      </script>
-    </div>
+      },
+      ],
+    };
+    var complexChartOption = {
+      responsive: true,
+      scales: {
+          yAxes: [{
+              id: "y-axis-1",
+              type: "linear", 
+              position: "left",
+              ticks: {
+                  min: 0,
+                  stepSize: 1
+              },
+          }, {
+              id: "y-axis-2",
+              type: "linear", 
+              position: "right",
+              ticks: {
+                  min: 0,
+                  stepSize: 1
+              },
+              gridLines: {
+                  drawOnChartArea: false, 
+              },
+          }],
+      }
+    };
+    </script>
   </body>
 </html>
