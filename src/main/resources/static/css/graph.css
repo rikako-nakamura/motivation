@@ -11,6 +11,15 @@
 
 }
 
+.graph2{
+  position: absolute;
+  top:100%;
+  padding-left: 50px;
+  font-size:25px;
+  color: rgb(7, 187, 4);
+
+}
+
 .container img{
   width:20%;
   height:auto;

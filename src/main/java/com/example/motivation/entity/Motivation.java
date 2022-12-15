@@ -1,7 +1,7 @@
 package com.example.motivation.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -24,5 +24,5 @@ public class Motivation implements Serializable{
   private String memo;
 
   //作成日時
-  private Date createDate;
+  private LocalDate createDate;
 }

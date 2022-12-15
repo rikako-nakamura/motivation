@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS motivation (
   `time` VARCHAR(100) NULL,
   `rate` CHAR(5) NULL,
   `memo` VARCHAR(500) NULL,
-  `create_date` DATETIME,
+  `create_date` DATE,
   PRIMARY KEY (`id`));

@@ -86,6 +86,82 @@
         });
       </script>
 
+      <img th:src="@{/images/frame.jpg}">
+      <h1 id="graph2" class="graph2">集中した時間</h1>
+      <canvas id="exChart"></canvas>
+      <script type="text/javascript" th:inline="javascript" >
+
+        //timeの配列を準備
+        let timeArray = [];
+        //timeのデータを準備
+        const time =motivationlist.map(x=>x.time);
+
+        for(var i = 0; i < time.length; i++){
+          timeArray.push(time[i]);
+        }
+
+        //createDateの配列を準備
+        let createDateArray = [];
+        //createDateのデータを呼び出し
+        const createDate = motivationlist.map(x=>x.createDate);
+        for(var i = 0; i < createDate.length; i++){
+          createDateArray.push(createDate[i]);
+        }
+
+        var ctx = document.getElementById("exChart");
+        var exChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: createDateArray,
+              datasets: [
+                {
+                  label: "集中時間",
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(242, 87, 87, 0.9)',
+                    'rgba(153,242,87,0.9)',
+                    'rgba(87, 138, 242, 0.9)',
+                    'rgba(242,231,87,0.9)'
+                  ],
+                  borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgba(242, 87, 87, 0.9)',
+                    'rgba(87, 138, 242, 0.9)',
+                    'rgba(242,231,87,0.9)'
+                  ],
+                  data: timeArray,
+                  lineTension: 0.3,
+                  fill: true,
+                  borderWidth: 3
+                },
+              ]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      min: 0,
+                      stepSize: 1
+                    }
+                  }
+                ]
+              }
+            },
+        });
+
+      </script>
     </div>
   </body>
 </html>
