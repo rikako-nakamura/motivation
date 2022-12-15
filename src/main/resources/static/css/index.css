@@ -6,15 +6,6 @@
   padding-bottom: 10px;
 }
 
-.graph{
-  color: rgb(7, 187, 4);
-  position: absolute;
-  top: 100%;
-  font-size: 25px;
-  padding-left: 50px;
-
-}
-
 .container img{
   width:20%;
   height:auto;

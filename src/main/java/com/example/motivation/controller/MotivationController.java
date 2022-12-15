@@ -45,8 +45,15 @@ public class MotivationController {
   public String index(Model model) {
     List<Motivation> motivationList = motivationService.findAll(Sort.by(Sort.Direction.DESC, "rate"));
     model.addAttribute("motivationlist", motivationList);
-
     return "motivation/index";
+  }
+
+  @GetMapping(value = "/motivation/graph")
+  public String graph(Model model){
+    List<Motivation> motivationList = motivationService.findAll(Sort.by(Sort.Direction.DESC, "rate"));
+    model.addAttribute("motivationlist", motivationList);
+
+    return "motivation/graph";
   }
 
   //登録する画面を表示
