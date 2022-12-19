@@ -1,0 +1,17 @@
+.container{
+  padding-top: 20px;
+}
+
+.container img{
+  width:20%;
+  height:auto;
+
+}
+
+.h1{
+  position: absolute;
+  top: 14%;
+  padding-left: 30px;
+  font-size: 20px;
+  color: rgb(7, 187, 4);
+}
