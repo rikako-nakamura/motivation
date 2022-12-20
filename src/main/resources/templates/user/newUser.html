@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ユーザー登録</title>
     <meta charset="UTF-8">
@@ -8,8 +7,9 @@
     <link th:href="@{/css/newUser.css}" rel="stylesheet">
   </head>
   <body>
-    <main class="main">
+    <div class="main">
       <form class="form" th:action="@{/user/new}" method="post" th:object="${form}">
+        <img th:src="@{/images/frame.jpg}">
         <h1 class="form__title">ユーザー登録</h1>
         <p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}" class="error-message"></p>
 
@@ -29,9 +29,9 @@
           <input type="password" name="confirmPassword" id="confirm-password">
         </p>
         <p class="form__item">
-          <input type="submit" value="登録">
+          <input type="submit" class="btn btn-outline-success" value="登録">
         </p>
       </form>
-    </main>
+    </div>
   </body>
 </html>

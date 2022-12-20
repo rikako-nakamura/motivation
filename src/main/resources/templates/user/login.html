@@ -7,8 +7,9 @@
     <link th:href="@{/css/login.css}" rel="stylesheet">
   </head>
   <body>
-    <main class="main">
+    <div class="main">
       <form class="form" th:action="@{/user/login}" method="post">
+        <img th:src="@{/images/frame.jpg}">
         <h1 class="form__title">ログイン</h1>
         <div th:if="${param.error}">
           <p th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
@@ -24,10 +25,10 @@
           <input type="password" placeholder="Type Your Password" name="password" id="password">
         </p>
         <p class="form__item">
-          <input type="submit" value="ログイン">
+          <input type="submit" class="btn btn-outline-success" value="ログイン">
         </p>
-        <a href="/user/new" class="to-user-registration">登録はこちら</a>
+        <a href="/user/new" class="btn btn-info">登録はこちら</a>
       </form>
-    </main>
+    </div>
   </body>
 </html>

@@ -1,3 +1,76 @@
-.error{
-  color: red;
+/*------ base ------*/
+
+body{
+	font-size: 20px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+}
+
+input{
+	margin: 0;
+	outline: none;
+	border: none;
+    font-size: 20px;
+}
+
+input[type="submit"]{
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.main{
+	width: 600px;
+	padding-top: 20px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.main img{
+  width:40%;
+  height:auto;
+
+}
+
+
+/*------ form ------*/
+
+.form__title{
+  letter-spacing: 0.5em;
+  position: absolute;
+  top: 14%;
+  padding-left: 230px;
+  font-size: 25px;
+  color: rgb(7, 187, 4);
+}
+
+.form__item{
+	margin-bottom: 45px;
+	text-align: left;
+}
+
+.form__item > label{
+	display: block;
+	margin-bottom: 15px;
+	font-weight: bold;
+  color: rgb(7, 187, 4);
+}
+
+.form__item > input[type="text"], .form__item > input[type="password"]{
+	width: 100%;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	line-height: 40px;
+}
+
+.form__item > input[type="submit"]{
+	width: 100%;
+}
+.error-message{
+	color: red;
+	font-size: 16px;
 }

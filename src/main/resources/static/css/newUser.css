@@ -26,16 +26,26 @@ input[type="submit"]{
 
 .main{
 	width: 600px;
-	padding-top: 60px;
+	padding-top: 20px;
 	margin: 0 auto;
 	text-align: center;
 }
 
+.main img{
+  width:40%;
+  height:auto;
+
+}
+
+
 /*------ form ------*/
 
 .form__title{
-	margin-bottom: 45px;
-	font-size: 30px;
+  position: absolute;
+  top: 14%;
+  padding-left: 230px;
+  font-size: 25px;
+  color: rgb(7, 187, 4);
 }
 
 .form__item{
@@ -47,6 +57,7 @@ input[type="submit"]{
 	display: block;
 	margin-bottom: 15px;
 	font-weight: bold;
+  color: rgb(7, 187, 4);
 }
 
 .form__item > input[type="text"], .form__item > input[type="password"]{
