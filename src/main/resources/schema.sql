@@ -6,3 +6,11 @@ CREATE TABLE IF NOT EXISTS motivation (
   `memo` VARCHAR(500) NULL,
   `create_date` DATE,
   PRIMARY KEY (`id`));
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(20),
+  password VARCHAR(60),
+  rolename VARCHAR(10)
+);
