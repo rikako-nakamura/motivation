@@ -25,7 +25,8 @@ public class SecurityConfig {
         .failureUrl("/login?error")       //ログイン失敗後のリダイレクト先URL
         .permitAll()                                                //ログイン画面は未ログインでもアクセス可能
     ).logout(logout -> logout                                       //ログアウトの設定記述開始
-            .logoutSuccessUrl("/login")           //ログアウト成功後のリダイレクト先URL
+      .logoutUrl("/user/logout")
+      .logoutSuccessUrl("/user/login")           //ログアウト成功後のリダイレクト先URL
     ).authorizeHttpRequests(authz -> authz                          //URLごとの認可設定記述開始
       .mvcMatchers("/user/new").permitAll()
       .requestMatchers(PathRequest.toStaticResources().atCommonLocations())

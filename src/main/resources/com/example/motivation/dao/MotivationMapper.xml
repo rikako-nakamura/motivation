@@ -13,13 +13,13 @@
   </select>
   <insert id="save">
     INSERT INTO motivation
-      (title, time, rate, memo, create_date)
+      (title, user_id, time, rate, memo, create_date)
     VALUES
-      (#{title}, #{time}, #{rate}, #{memo}, CURRENT_DATE)
+      (#{title}, #{userId}, #{time}, #{rate}, #{memo}, CURRENT_DATE)
   </insert>
 
   <update id="update">
-    UPDATE motivation SET title = #{title}, time = #{time}, rate = #{rate}, memo = #{memo} WHERE id = #{id}
+    UPDATE motivation SET title = #{title}, userId = #{userId}, time = #{time}, rate = #{rate}, memo = #{memo} WHERE id = #{id}
   </update>
 
   <delete id="delete">
