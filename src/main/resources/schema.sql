@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS motivation (
   `create_date` DATE,
   PRIMARY KEY (`id`));
 
-DROP TABLE IF EXISTS users;
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
   id SERIAL PRIMARY KEY,
   username VARCHAR(20),
   password VARCHAR(60),
