@@ -11,7 +11,9 @@
   <div class="container">
     <img th:src="@{/images/frame.jpg}">
     <h1 class="h1">何を集中しましたか？</h1>
-
+    <div th:if="${validationError}" th:each="error : ${validationError}">
+      <label class="text-danger" th:text="${error}"></label>
+    </div>
     <form th:action="@{/motivation/create}" th:object="${motivationAddRequest}" th:method="post">
       <div class="row mb-3">
         <label class="col-sm-2 col-form-label">タイトル：</label>
