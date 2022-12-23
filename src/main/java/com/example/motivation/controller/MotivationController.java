@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.example.motivation.dto.MotivationAddRequest;
 import com.example.motivation.dto.MotivationUpdateRequest;
 import com.example.motivation.dto.UserNewForm;
@@ -76,6 +75,7 @@ public class MotivationController {
     return "motivation/index";
   }
 
+  //グラフを表示
   @GetMapping("/motivation/graph")
   public String graph(Model model){
     List<Motivation> motivationList = motivationService.findAll(Sort.by(Sort.Direction.DESC, "rate"));
@@ -103,6 +103,8 @@ public class MotivationController {
         errorList.add(error.getDefaultMessage());
       }
       model.addAttribute("validationError", errorList);
+      rate = initrate();
+      model.addAttribute("rate", rate);
       return "motivation/new";
     }
     motivationService.save(motivationRequest);
@@ -134,6 +136,8 @@ public class MotivationController {
         errorList.add(error.getDefaultMessage());
       }
       model.addAttribute("validationError", errorList);
+      rate = initrate();
+      model.addAttribute("rate", rate);
       return "motivation/edit";
     }
     motivationService.update(motivationUpdateRequest);
