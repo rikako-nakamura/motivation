@@ -15,11 +15,12 @@
       <img th:src="@{/images/frame.jpg}">
       <h1  class="h1">編集</h1>
 
-      <form th:action="@{/motivation/update}" th:object="${motivationUpdateRequest}">
+      <form th:action="@{/motivation/update}" th:object="${motivationUpdateRequest}" th:method="post">
+        <input type="hidden" th:field="*{id}" />
         <div class="row mb-3">
           <label class="col-sm-2 col-form-label">タイトル：</label>
           <div class="col-sm-10">
-            <input type="text" th:field="*{title}" class="form-control" placeholder="ピアノ">
+            <input type="text" th:field="*{title}" class="form-control">
           </div>
         </div>
         <div class="row mb-3">
