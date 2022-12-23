@@ -11,9 +11,6 @@ public class Motivation implements Serializable{
   //ID
   private Long id;
 
-  //ユーザーID
-  private Integer userId;
-
   //集中したこと
   public String title;
 
