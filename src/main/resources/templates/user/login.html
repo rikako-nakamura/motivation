@@ -11,22 +11,27 @@
       <form class="form" th:action="@{/user/login}" method="post">
         <img th:src="@{/images/frame.jpg}">
         <h1 class="form__title">ログイン</h1>
+
         <div th:if="${param.error}">
           <p th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
             <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
           </p>
         </div>
+
         <p class="form__item">
           <label for="username">ニックネーム</label>
           <input type="text" placeholder="Type Your Username" name="username" id="username">
         </p>
+
         <p class="form__item">
           <label for="password">パスワード</label>
           <input type="password" placeholder="Type Your Password" name="password" id="password">
         </p>
+
         <p class="form__item">
           <input type="submit" class="btn btn-outline-success" value="ログイン">
         </p>
+
         <a href="/user/new" class="btn btn-info">登録はこちら</a>
       </form>
     </div>

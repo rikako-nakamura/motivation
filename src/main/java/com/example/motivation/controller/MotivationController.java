@@ -37,6 +37,8 @@ public class MotivationController {
   private UserNewService userNewService;
 
   private Map<String, String> rate;
+
+  //ラジオボタン用意
   private Map<String, String> initrate(){
     Map<String, String> radio = new LinkedHashMap<>();
     radio.put("1","🌟");
@@ -67,6 +69,7 @@ public class MotivationController {
   public String login(){
     return "user/login";
   }
+
   //リスト一覧を表示
   @GetMapping("/motivation/index")
   public String index(Model model) {
@@ -80,15 +83,16 @@ public class MotivationController {
   public String graph(Model model){
     List<Motivation> motivationList = motivationService.findAll(Sort.by(Sort.Direction.DESC, "rate"));
     model.addAttribute("motivationlist", motivationList);
-
     return "motivation/graph";
   }
 
   //登録する画面を表示
   @GetMapping("/motivation/new")
-    public String displayAdd(Model model) {
+    public String displayAdd(Model model){
       model.addAttribute("motivationAddRequest", new MotivationAddRequest());
+      //ラジオボタン呼ぶ
       rate = initrate();
+      //指定されたrateに指定されたrateを追加
       model.addAttribute("rate", rate);
       return "motivation/new";
     }

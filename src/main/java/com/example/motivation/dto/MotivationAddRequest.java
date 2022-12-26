@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class MotivationAddRequest implements Serializable {
   
+  //バリデーションを追加
   @NotEmpty(message = "タイトルを入力してください")
   private String title;
 

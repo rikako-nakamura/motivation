@@ -16,7 +16,10 @@ public class UserNewService {
   private UserRepository userRepository;
 
   public void userNew(String username, String password){
+
+    //パスワードはハッシュ化する
     String hashedPassword = passwordEncoder.encode(password);
+
     userRepository.saveAndFlush(new User(username, hashedPassword, "GENERAL"));
 
   }

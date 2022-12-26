@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link th:href="@{/css/newUser.css}" rel="stylesheet">
   </head>
+
   <body>
     <div class="main">
       <form class="form" th:action="@{/user/new}" method="post" th:object="${form}">
@@ -18,19 +19,23 @@
           <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
           <input type="text" name="username" id="username">
         </p>
+
         <p class="form__item">
           <label for="password">パスワード</label>
           <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span>
           <input type="password" name="password" id="password">
         </p>
+
         <p class="form__item">
           <label for="confirm-password">パスワード(確認)</label>
           <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="error-message"></span>
           <input type="password" name="confirmPassword" id="confirm-password">
         </p>
+
         <p class="form__item">
           <input type="submit" class="btn btn-outline-success" value="登録">
         </p>
+
         <a href="/user/login" class="btn btn-info">ログインはこちら</a>
       </form>
     </div>

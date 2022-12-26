@@ -20,22 +20,27 @@ public class MotivationService {
   @Autowired
   private MotivationMapper motivationMapper;
 
+  //全てのリストを返す(満足度はDESCで)
   public List<Motivation> findAll(Sort by) {
     return motivationMapper.findAll(Sort.by(Sort.Direction.DESC, "rate"));
   }
 
+  //編集時にIdを呼び出すため
   public Motivation findById(Long id){
     return motivationMapper.findById(id);
   }
 
+  //データを保存するため
   public void save(MotivationAddRequest motivationAddRequest) {
     motivationMapper.save(motivationAddRequest);
   }
 
+  //データの更新時に使用
   public void update(MotivationUpdateRequest motivationUpdateRequest){
     motivationMapper.update(motivationUpdateRequest);
   }
 
+  //削除機能
   public void delete(Long id){
     motivationMapper.delete(id);
   }

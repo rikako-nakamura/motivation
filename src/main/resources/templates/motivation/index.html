@@ -10,13 +10,16 @@
     <div class="container">
       <img th:src="@{/images/frame.jpg}">
       <h1 class="h1">集中管理一覧</h1>
+
       <div class="float-end">
         <a th:href="@{/motivation/new}" class="new btn btn-outline-success">登録はこちら</a>
         <a th:href="@{/motivation/graph}" class="btn btn-outline-info">グラフ一覧</a>
         <form th:action="@{/user/logout}" method="post" class="btn btn-link"><button class="btn btn-outline-dark">ログアウト</button>
         </form>
       </div>
+
       <p>※満足度を高い順にしています。</p>
+
       <div th:if="${motivationlist}">
         <table class="table table-success  table-striped ">
           <thead>

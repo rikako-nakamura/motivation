@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UserNewForm {
+
+	//バリデーションを追加
   @NotBlank
   @Size(min = 4, max = 20)
   private String username;
