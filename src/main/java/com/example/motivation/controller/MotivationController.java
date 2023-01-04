@@ -5,8 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -17,15 +15,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.motivation.dto.MotivationAddRequest;
 import com.example.motivation.dto.MotivationUpdateRequest;
-import com.example.motivation.dto.UserNewForm;
 import com.example.motivation.entity.Motivation;
 import com.example.motivation.service.MotivationService;
-import com.example.motivation.service.UserNewService;
 
 @Controller
 public class MotivationController {
@@ -33,9 +28,6 @@ public class MotivationController {
   @Autowired
   private MotivationService motivationService;
   
-  @Autowired
-  private UserNewService userNewService;
-
   private Map<String, String> rate;
 
   //ラジオボタン用意
@@ -47,27 +39,6 @@ public class MotivationController {
     radio.put("4","🌟🌟🌟🌟");
     radio.put("5","🌟🌟🌟🌟🌟");
     return radio;
-  }
-
-  //ユーザー登録
-  @GetMapping("/user/new")
-  public String userNew(@ModelAttribute("form") UserNewForm form){
-    return "user/newUser";
-  }
-
-  @PostMapping("/user/new")
-  public String userRegistration(@Valid @ModelAttribute("form") UserNewForm form, BindingResult result){
-    if(result.hasErrors()){
-      return "user/newUser";
-    }
-    userNewService.userNew(form.getUsername(), form.getPassword());
-    return "redirect:/user/login";
-  }
-
-  //ログイン
-  @GetMapping("/user/login")
-  public String login(){
-    return "user/login";
   }
 
   //リスト一覧を表示
